@@ -1,13 +1,13 @@
 diff --git a/Cargo.toml b/Cargo.toml
-index 77cdbbb..e3abd74 100644
+index 329e9ff..094f1c2 100644
 --- a/Cargo.toml
 +++ b/Cargo.toml
 @@ -26,7 +26,7 @@ path = "src/check.rs"
  [dependencies]
  anyhow = "1.0.18"
  chrono = "0.4"
--sequoia-openpgp = { version = "2", default-features = false }
-+sequoia-openpgp = { version = "2", default-features = false, path = "../sequoia/openpgp" }
+-sequoia-openpgp = { version = "2.1", default-features = false }
++sequoia-openpgp = { version = "2.1", default-features = false, path = "../sequoia/openpgp" }
  serde = "1.0"
  thiserror = "1.0.2"
  toml = "0.5"

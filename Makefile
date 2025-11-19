@@ -2,7 +2,10 @@ DIRS=sequoia-cert-store sequoia-gpg-agent sequoia-keystore sequoia-policy-config
 
 .PHONY: all patch clean
 
-all: patch
+all: patch build
+
+build:
+	cargo build --target-dir target --manifest-path sequoia-sq/Cargo.toml $(CARGOFLAGS)
 
 patch: $(foreach item,$(DIRS), $(item).patched)
 
@@ -19,3 +22,4 @@ clean:
 			rm $$i.patched; \
 		fi; \
 	done
+	rm -rf target

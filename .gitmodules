@@ -1,0 +1,21 @@
+[submodule "sequoia-wot"]
+	path = sequoia-wot
+	url = https://gitlab.com/sequoia-pgp/sequoia-wot
+[submodule "sequoia-sq"]
+	path = sequoia-sq
+	url = https://gitlab.com/sequoia-pgp/sequoia-sq.git
+[submodule "sequoia-policy-config"]
+	path = sequoia-policy-config
+	url = https://gitlab.com/sequoia-pgp/sequoia-policy-config.git
+[submodule "sequoia-keystore"]
+	path = sequoia-keystore
+	url = https://gitlab.com/sequoia-pgp/sequoia-keystore.git
+[submodule "sequoia-gpg-agent"]
+	path = sequoia-gpg-agent
+	url = https://gitlab.com/sequoia-pgp/sequoia-gpg-agent.git
+[submodule "sequoia-cert-store"]
+	path = sequoia-cert-store
+	url = https://gitlab.com/sequoia-pgp/sequoia-cert-store.git
+[submodule "sequoia"]
+	path = sequoia
+	url = https://gitlab.com/sequoia-pgp/sequoia.git

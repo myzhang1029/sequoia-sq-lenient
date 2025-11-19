@@ -1,0 +1,51 @@
+diff --git a/openpgp/src/parse.rs b/openpgp/src/parse.rs
+index f23f4e5f..accb8c95 100644
+--- a/openpgp/src/parse.rs
++++ b/openpgp/src/parse.rs
+@@ -3778,23 +3778,24 @@ impl MPI {
+             let mask = !((1 << (8 - unused_bits)) - 1);
+             let unused_value = value[0] & mask;
+ 
+-            if unused_value != 0 && ! lenient_parsing {
+-                return uniform_error_for_secrets(
+-                    Error::MalformedMPI(
+-                        format!("{} unused bits not zeroed: ({:x})",
+-                                unused_bits, unused_value)
+-                    ));
++            if unused_value != 0 {
++                let e = format!("{} unused bits not zeroed: ({:x})", unused_bits, unused_value);
++                if lenient_parsing {
++                    eprintln!("{e}");
++                } else {
++                    return uniform_error_for_secrets(Error::MalformedMPI(e));
++                }
+             }
+         }
+ 
+         let first_used_bit = 8 - unused_bits;
+-        if value[0] & (1 << (first_used_bit - 1)) == 0 && ! lenient_parsing {
+-            return uniform_error_for_secrets(
+-                Error::MalformedMPI(
+-                    format!("leading bit is not set: \
+-                             expected bit {} to be set in {:8b} ({:x})",
+-                            first_used_bit, value[0], value[0])
+-                ));
++        if value[0] & (1 << (first_used_bit - 1)) == 0 {
++            let e = format!("leading bit is not set: expected bit {} to be set in {:8b} ({:x}; {:x?})", first_used_bit, value[0], value[0], value);
++            if lenient_parsing {
++                eprintln!("{e}");
++            } else {
++                return uniform_error_for_secrets(Error::MalformedMPI(e));
++            }
+         }
+ 
+         // Now consume the data.  Note: we avoid using parse_bytes
+@@ -3830,7 +3831,7 @@ impl ProtectedMPI {
+         // do, this breaks equality and round-tripping: we normalize
+         // the non-canonical encoding, so two distinct wire
+         // representations are folded into one in-core representation.
+-        Ok(MPI::parse_common(name_len, name, true, false, php)?.into())
++        Ok(MPI::parse_common(name_len, name, true, true, php)?.into())
+     }
+ }
+ impl PKESK {

@@ -1,0 +1,29 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index 6674762..f95f16b 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -27,8 +27,8 @@ chrono = "0.4"
+ futures = "0.3"
+ lalrpop-util = ">=0.17, <0.23"
+ libc = "0.2.152"
+-sequoia-openpgp = { version = "2", default-features = false }
+-sequoia-ipc = { version = "0.36", default-features = false }
++sequoia-openpgp = { version = "2", default-features = false, path = "../sequoia/openpgp" }
++sequoia-ipc = { version = "0.36", default-features = false, path = "../sequoia/ipc" }
+ stfu8 = "0.2"
+ tempfile = "3.1"
+ thiserror = ">=1, <3"
+@@ -48,11 +48,11 @@ debug = true
+ 
+ [target.'cfg(not(windows))'.dev-dependencies]
+ # Enables a crypto backend for the tests:
+-sequoia-openpgp = { version = "2", default-features = false, features = ["crypto-nettle", "__implicit-crypto-backend-for-tests"]  }
++sequoia-openpgp = { version = "2", default-features = false, features = ["crypto-nettle", "__implicit-crypto-backend-for-tests"], path = "../sequoia/openpgp"  }
+ 
+ [target.'cfg(windows)'.dev-dependencies]
+ # Enables a crypto backend for the tests:
+-sequoia-openpgp = { version = "2", default-features = false, features = ["crypto-cng", "__implicit-crypto-backend-for-tests"] }
++sequoia-openpgp = { version = "2", default-features = false, features = ["crypto-cng", "__implicit-crypto-backend-for-tests"], path = "../sequoia/openpgp" }
+ 
+ [package.metadata.docs.rs]
+ # Enables a crypto backend for the docs.rs generation:

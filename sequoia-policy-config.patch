@@ -1,0 +1,27 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index 77cdbbb..e3abd74 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -26,7 +26,7 @@ path = "src/check.rs"
+ [dependencies]
+ anyhow = "1.0.18"
+ chrono = "0.4"
+-sequoia-openpgp = { version = "2", default-features = false }
++sequoia-openpgp = { version = "2", default-features = false, path = "../sequoia/openpgp" }
+ serde = "1.0"
+ thiserror = "1.0.2"
+ toml = "0.5"
+@@ -37,11 +37,11 @@ quickcheck = { version = "1", default-features = false }
+ 
+ [target.'cfg(not(windows))'.dev-dependencies]
+ # Enables a crypto backend for the tests:
+-sequoia-openpgp = { version = "2", default-features = false, features = ["crypto-nettle", "__implicit-crypto-backend-for-tests"]  }
++sequoia-openpgp = { version = "2", default-features = false, features = ["crypto-nettle", "__implicit-crypto-backend-for-tests"], path = "../sequoia/openpgp"  }
+ 
+ [target.'cfg(windows)'.dev-dependencies]
+ # Enables a crypto backend for the tests:
+-sequoia-openpgp = { version = "2", default-features = false, features = ["crypto-cng", "__implicit-crypto-backend-for-tests"] }
++sequoia-openpgp = { version = "2", default-features = false, features = ["crypto-cng", "__implicit-crypto-backend-for-tests"], path = "../sequoia/openpgp" }
+ 
+ [package.metadata.docs.rs]
+ # Enables a crypto backend for the docs.rs generation:
